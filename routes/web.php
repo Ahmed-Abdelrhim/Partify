@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ApiDev\TagController;
+use App\Http\Controllers\JobController;
+use App\Http\Controllers\ListingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlayPlayingController;
 
@@ -23,3 +26,14 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('play', [PlayPlayingController::class, 'play']);
+
+// Job-listing
+Route::get('jobs', [JobController::class, 'index']);
+
+
+// listing
+Route::get('bird', [ListingController::class, 'create']);
+
+
+// Tags
+Route::get('tags', [TagController::class, 'index']);
