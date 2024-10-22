@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Scout\Searchable;
 
 class Company extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Searchable;
 
     protected $table = 'companies';
 
@@ -30,5 +31,27 @@ class Company extends Model
     public function socials()
     {
         return $this->hasOne(CompanySocial::class);
+    }
+
+
+    /**
+     * Get the name of the index associated with the model.
+     */
+    public function searchableAs(): string
+    {
+        return 'companies_index';
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+            'logo' => $this->logo,
+            'website' => $this->website,
+            'location' => $this->location
+        ];
     }
 }

@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\ApiDev\TagController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\SearchableController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlayPlayingController;
+use App\Http\Controllers\GeoLocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +40,16 @@ Route::get('bird', [ListingController::class, 'create']);
 
 // Tags
 Route::get('tags', [TagController::class, 'index']);
+Route::get('assign-tags', [TagController::class, 'assignTags']);
+
+// Searchable
+Route::get('search', SearchableController::class)->name('search');
+
+//
+Route::get('get-address-from-ip',[GeoLocationController::class, 'index']);
+
+
+// Articles
+Route::get('article/create',[ArticleController::class, 'create']);
+Route::post('article/store',[ArticleController::class, 'store'])->name('articles.store');
+

@@ -1,4 +1,6 @@
 <?php
+use App\Models\Article;
+use App\Models\Company;
 use App\Models\Tag;
 
 return [
@@ -142,6 +144,16 @@ return [
             Tag::class => [
                 'filterableAttributes' => ['name'],
                 'sortableAttributes' => ['created_at'],
+            ],
+
+            Company::class => [
+                'filterableAttributes' => ['name', 'logo', 'website', 'location'],
+                'sortableAttributes' => ['created_at'],
+            ],
+
+            Article::class => [
+                'filterableAttributes' => ['title', 'teaser', 'published_at', 'user', 'tags'],
+                'sortableAttributes' => ['published_at'],
             ],
         ],
     ],
