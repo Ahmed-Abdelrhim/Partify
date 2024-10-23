@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Redis;
 use Laravel\Scout\Searchable;
 
 class Article extends Model
 {
     use HasFactory, Searchable;
 
-    protected $fillable = ['user_id', 'title', 'teaser', 'status', 'published_at'];
+    protected $fillable = ['user_id', 'title', 'teaser', 'status', 'views_count', 'slug', 'published_at'];
 
 
     protected $casts = [
@@ -30,6 +31,16 @@ class Article extends Model
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    public function logView()
+    {
+        Redis::pfadd(sprintf('article:%u:views', $this->id), [request()->ip()]);
+    }
+
+    public function getViewCount()
+    {
+        return Redis::pfcount(sprintf('article:%u:views', $this->id));
     }
 
 

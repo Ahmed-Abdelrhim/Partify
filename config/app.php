@@ -172,6 +172,9 @@ return [
 
         App\Providers\DropboxServiceProvider::class,
         Stevebauman\Location\LocationServiceProvider::class,
+        Mavinoo\Batch\BatchServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
     ])->toArray(),
 
     /*
@@ -188,6 +191,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'Location' => Stevebauman\Location\Facades\Location::class,
+        'Batch' => Mavinoo\Batch\BatchFacade::class,
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class
     ])->toArray(),
 
 ];

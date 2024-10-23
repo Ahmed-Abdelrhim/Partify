@@ -52,4 +52,11 @@ Route::get('get-address-from-ip',[GeoLocationController::class, 'index']);
 // Articles
 Route::get('article/create',[ArticleController::class, 'create']);
 Route::post('article/store',[ArticleController::class, 'store'])->name('articles.store');
+Route::get('play-with-articles',[ArticleController::class, 'playWithArticles']);
+
+Route::get('show-articles',[ArticleController::class, 'showArticles']);
+
+Route::get('view-article/{id}',[ArticleController::class, 'viewArticles'])->name('view.article');
+
+
 
