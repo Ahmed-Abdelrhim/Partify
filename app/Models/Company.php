@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\traits\LogView;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +11,7 @@ use Laravel\Scout\Searchable;
 
 class Company extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable, Searchable;
+    use HasApiTokens, HasFactory, Notifiable, Searchable, LogView;
 
     protected $table = 'companies';
 

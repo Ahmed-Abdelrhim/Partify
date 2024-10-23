@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Redis;
 use Laravel\Scout\Searchable;
+use App\Models\traits\LogView;
 
 class Article extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory, Searchable, LogView;
 
     protected $fillable = ['user_id', 'title', 'teaser', 'status', 'views_count', 'slug', 'published_at'];
 
@@ -32,17 +32,6 @@ class Article extends Model
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
-
-    public function logView()
-    {
-        Redis::pfadd(sprintf('article:%u:views', $this->id), [request()->ip()]);
-    }
-
-    public function getViewCount()
-    {
-        return Redis::pfcount(sprintf('article:%u:views', $this->id));
-    }
-
 
     /**
      * Determine if the model should be searchable.

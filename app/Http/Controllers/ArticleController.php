@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -45,6 +47,15 @@ class ArticleController extends Controller
 
     public function showArticles()
     {
+        $articles = Article::where('status', Article::STATUS_PUBLISHED)
+            ->orderBy('views_count', 'asc')
+            ->pluck('id')
+            ->map(function ($id) {
+                return ['id' => $id, 'views_count' => Redis::pfcount(sprintf('article:%u:views', $id))];
+            })
+            ->toArray();
+
+
         // $articles = Article::inRandomOrder()->take(5)->get();
         $articles = Article::take(5)->get();
 

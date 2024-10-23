@@ -37,6 +37,20 @@ class SyncArticleViewCount extends Command
             ->toArray();
 
 
+        // Prepare data for bulk update
+        // $ids = collect($articles)->pluck('id')->toArray();
+        // $cases = '';
+        // $bindings = [];
+
+        // foreach ($articles as $article) {
+        //     $cases .= "WHEN id = ? THEN ? ";
+        //     $bindings[] = $article['id'];
+        //     $bindings[] = $article['views_count'];
+        // }
+
+        // // Execute the update
+        // DB::update("UPDATE articles SET views_count = CASE $cases ELSE views_count END WHERE id IN (" . implode(',', $ids) . ")", $bindings);
+
         batch()->update(new Article(), $articles, 'id');
         return true;
     }
