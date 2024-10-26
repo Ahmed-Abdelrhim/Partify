@@ -58,5 +58,9 @@ Route::get('show-articles',[ArticleController::class, 'showArticles']);
 
 Route::get('view-article/{id}',[ArticleController::class, 'viewArticles'])->name('view.article');
 
+// معرض اثاث aaaa
+// $2y$10$ht0n98evVc9b.BMe5Xck..hTnOObXdD9C9jMhwU/SHnZX1FbFPvVW
+
+
 
 
