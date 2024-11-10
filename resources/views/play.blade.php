@@ -17,8 +17,11 @@
 @endsection
 @push('js')
     {{-- <script src="{{ asset('playJs.js') }}"></script> --}}
-    <script src="{{ asset('playJs_two.js') }}"></script>
-
+    {{-- <script src="{{ asset('playJs_two.js') }}"></script> --}}
+    {{-- <script src="{{ asset('stack.js') }}"></script> --}}
+    {{-- <script src="{{ asset('queue.js') }}"></script> --}}
+    {{-- <script src="{{ asset('tree.js') }}"></script> --}}
+    <script src="{{ asset('hashTable.js') }}"></script>
 
 
 

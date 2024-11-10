@@ -46,21 +46,19 @@ Route::get('assign-tags', [TagController::class, 'assignTags']);
 Route::get('search', SearchableController::class)->name('search');
 
 //
-Route::get('get-address-from-ip',[GeoLocationController::class, 'index']);
+Route::get('get-address-from-ip', [GeoLocationController::class, 'index']);
 
 
 // Articles
-Route::get('article/create',[ArticleController::class, 'create']);
-Route::post('article/store',[ArticleController::class, 'store'])->name('articles.store');
-Route::get('play-with-articles',[ArticleController::class, 'playWithArticles']);
+Route::get('article/create', [ArticleController::class, 'create']);
+Route::post('article/store', [ArticleController::class, 'store'])->name('articles.store');
+Route::get('play-with-articles', [ArticleController::class, 'playWithArticles']);
 
-Route::get('show-articles',[ArticleController::class, 'showArticles']);
+Route::get('show-articles', [ArticleController::class, 'showArticles']);
 
-Route::get('view-article/{id}',[ArticleController::class, 'viewArticles'])->name('view.article');
-
-// معرض اثاث aaaa
-// $2y$10$ht0n98evVc9b.BMe5Xck..hTnOObXdD9C9jMhwU/SHnZX1FbFPvVW
+Route::get('view-article/{id}', [ArticleController::class, 'viewArticles'])->name('view.article');
 
 
-
+// comments -------------------------------- The comment has many likes
+// likes    -------------------------------- each like belongs to a specific comment
 
